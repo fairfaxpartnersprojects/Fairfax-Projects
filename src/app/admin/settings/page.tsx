@@ -5,21 +5,21 @@ import { useState } from "react";
 type SettingsTab = "general" | "users" | "integrations" | "email" | "seo";
 
 const users = [
-  { id: 1, name: "Admin User", email: "admin@fairfax.com", role: "Super Admin", lastLogin: "Today" },
-  { id: 2, name: "Alexandra Hughes", email: "a.hughes@fairfax.com", role: "Admin", lastLogin: "Today" },
-  { id: 3, name: "David Park", email: "d.park@fairfax.com", role: "Editor", lastLogin: "Yesterday" },
-  { id: 4, name: "Maria Santos", email: "m.santos@fairfax.com", role: "Editor", lastLogin: "3 days ago" },
+  { id: 1, name: "Admin", email: "admin@fairfax.partners", role: "Super Admin", lastLogin: "Today" },
+  { id: 2, name: "IR Manager", email: "ir@fairfax.partners", role: "Admin", lastLogin: "Today" },
+  { id: 3, name: "Content Editor", email: "content@fairfax.partners", role: "Editor", lastLogin: "Yesterday" },
+  { id: 4, name: "Campaign Manager", email: "campaigns@fairfax.partners", role: "Editor", lastLogin: "3 days ago" },
 ];
 
 const integrations = [
   { name: "Google Analytics", description: "Website traffic and user behavior analytics", connected: true, icon: "GA" },
   { name: "Google Search Console", description: "Search performance and indexing status", connected: true, icon: "SC" },
   { name: "Mailchimp", description: "Email marketing and newsletter management", connected: true, icon: "MC" },
-  { name: "Slack", description: "Team notifications and alerts", connected: false, icon: "SL" },
-  { name: "HubSpot", description: "Advanced CRM and marketing automation", connected: false, icon: "HS" },
-  { name: "Stripe", description: "Payment processing and invoicing", connected: false, icon: "ST" },
-  { name: "Zapier", description: "Workflow automation and app connections", connected: false, icon: "ZP" },
-  { name: "Salesforce", description: "Enterprise CRM integration", connected: false, icon: "SF" },
+  { name: "FAIR Agent", description: "Agentic IR operating system for MyIR subscribers", connected: true, icon: "FA" },
+  { name: "NewsWire", description: "Press release dissemination and news distribution", connected: true, icon: "NW" },
+  { name: "Slack", description: "Team notifications and issuer alerts", connected: false, icon: "SL" },
+  { name: "Stripe", description: "Subscription billing for MyIR and services", connected: false, icon: "ST" },
+  { name: "Twilio", description: "Phone system and voicemail for issuer numbers", connected: true, icon: "TW" },
 ];
 
 export default function SettingsPage() {
@@ -72,7 +72,7 @@ export default function SettingsPage() {
               </label>
               <input
                 type="text"
-                defaultValue="Fairfax Partners"
+                defaultValue="Fairfax Partners Inc."
                 className="input-field"
               />
             </div>
@@ -82,7 +82,7 @@ export default function SettingsPage() {
               </label>
               <input
                 type="text"
-                defaultValue="Strategic Business Solutions"
+                defaultValue="Connecting Capital & Ideas"
                 className="input-field"
               />
             </div>
@@ -92,7 +92,7 @@ export default function SettingsPage() {
               </label>
               <input
                 type="email"
-                defaultValue="contact@fairfaxpartners.com"
+                defaultValue="connect@fairfax.partners"
                 className="input-field"
               />
             </div>
@@ -102,7 +102,7 @@ export default function SettingsPage() {
               </label>
               <input
                 type="text"
-                defaultValue="(703) 555-0100"
+                defaultValue="+1 604 366 6277"
                 className="input-field"
               />
             </div>
@@ -112,7 +112,7 @@ export default function SettingsPage() {
               </label>
               <textarea
                 rows={2}
-                defaultValue="123 Business Ave, Suite 500&#10;Fairfax, VA 22030"
+                defaultValue="Suite #1504, 1221 Bidwell Street&#10;Vancouver, BC V6G 0B1, Canada"
                 className="input-field"
               />
             </div>
@@ -120,7 +120,7 @@ export default function SettingsPage() {
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Timezone
               </label>
-              <select className="input-field" defaultValue="ET">
+              <select className="input-field" defaultValue="PT">
                 <option value="ET">Eastern Time (ET)</option>
                 <option value="CT">Central Time (CT)</option>
                 <option value="MT">Mountain Time (MT)</option>
@@ -293,7 +293,7 @@ export default function SettingsPage() {
               </label>
               <input
                 type="email"
-                defaultValue="noreply@fairfaxpartners.com"
+                defaultValue="noreply@fairfax.partners"
                 className="input-field"
               />
             </div>
@@ -320,7 +320,7 @@ export default function SettingsPage() {
               </label>
               <input
                 type="text"
-                defaultValue="Fairfax Partners | Strategic Business Solutions"
+                defaultValue="Fairfax Partners Inc. | Connecting Capital & Ideas"
                 className="input-field"
               />
               <p className="text-xs text-gray-400 mt-1">
@@ -333,7 +333,7 @@ export default function SettingsPage() {
               </label>
               <textarea
                 rows={3}
-                defaultValue="Fairfax Partners delivers innovative strategic business solutions, consulting, and technology services to help companies grow and succeed."
+                defaultValue="Integrated investor relations for public and pre-public companies. Core IR, MyIR, Essential IR, and Momentum IR — powered by FAIR, the world's first agentic IR agent."
                 className="input-field"
               />
               <p className="text-xs text-gray-400 mt-1">

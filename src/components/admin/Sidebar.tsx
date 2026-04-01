@@ -109,7 +109,7 @@ export default function Sidebar() {
             <p className="text-sm font-medium text-gray-900 truncate">
               Admin User
             </p>
-            <p className="text-xs text-gray-500 truncate">admin@fairfax.com</p>
+            <p className="text-xs text-gray-500 truncate">admin@fairfax.partners</p>
           </div>
         </div>
         <Link

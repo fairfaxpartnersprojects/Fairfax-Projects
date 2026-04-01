@@ -13,20 +13,20 @@ const pages = [
 ];
 
 const blogPosts = [
-  { id: 1, title: "Q1 2026 Market Insights", category: "Industry", status: "Published", date: "Mar 28, 2026", views: 3892 },
-  { id: 2, title: "5 Trends in Strategic Consulting", category: "Insights", status: "Published", date: "Mar 20, 2026", views: 2145 },
-  { id: 3, title: "Client Success: TechStart Transformation", category: "Case Study", status: "Published", date: "Mar 15, 2026", views: 1823 },
-  { id: 4, title: "The Future of Digital Operations", category: "Technology", status: "Draft", date: "Apr 1, 2026", views: 0 },
-  { id: 5, title: "Annual Report 2025 Highlights", category: "Company", status: "Review", date: "Mar 30, 2026", views: 0 },
+  { id: 1, title: "How FAIR is Changing Investor Relations for Small-Cap Issuers", category: "Product", status: "Published", date: "Mar 28, 2026", views: 3892 },
+  { id: 2, title: "5 IR Mistakes Small-Cap Companies Make (And How to Fix Them)", category: "Insights", status: "Published", date: "Mar 20, 2026", views: 2145 },
+  { id: 3, title: "Client Spotlight: Noveris Health Sciences Core IR Build", category: "Case Study", status: "Published", date: "Mar 15, 2026", views: 1823 },
+  { id: 4, title: "The Rise of Agentic IR: What It Means for Public Companies", category: "Industry", status: "Draft", date: "Apr 1, 2026", views: 0 },
+  { id: 5, title: "Core IR vs. Traditional IR Firms: A Comparison", category: "Product", status: "Review", date: "Mar 30, 2026", views: 0 },
 ];
 
 const mediaFiles = [
-  { id: 1, name: "hero-banner.jpg", type: "Image", size: "2.4 MB", uploaded: "Mar 28, 2026" },
-  { id: 2, name: "team-photo.jpg", type: "Image", size: "3.1 MB", uploaded: "Mar 25, 2026" },
-  { id: 3, name: "annual-report-2025.pdf", type: "PDF", size: "8.7 MB", uploaded: "Mar 20, 2026" },
-  { id: 4, name: "logo-dark.svg", type: "SVG", size: "12 KB", uploaded: "Feb 15, 2026" },
-  { id: 5, name: "case-study-techstart.pdf", type: "PDF", size: "4.2 MB", uploaded: "Mar 15, 2026" },
-  { id: 6, name: "office-video.mp4", type: "Video", size: "45.8 MB", uploaded: "Mar 10, 2026" },
+  { id: 1, name: "fairfax-hero-banner.jpg", type: "Image", size: "2.4 MB", uploaded: "Mar 28, 2026" },
+  { id: 2, name: "fair-agent-demo.mp4", type: "Video", size: "32.5 MB", uploaded: "Mar 25, 2026" },
+  { id: 3, name: "core-ir-onboarding-guide.pdf", type: "PDF", size: "4.7 MB", uploaded: "Mar 20, 2026" },
+  { id: 4, name: "fairfax-logo-dark.svg", type: "SVG", size: "12 KB", uploaded: "Feb 15, 2026" },
+  { id: 5, name: "noveris-case-study.pdf", type: "PDF", size: "3.2 MB", uploaded: "Mar 15, 2026" },
+  { id: 6, name: "myir-product-walkthrough.mp4", type: "Video", size: "45.8 MB", uploaded: "Mar 10, 2026" },
 ];
 
 export default function ContentPage() {

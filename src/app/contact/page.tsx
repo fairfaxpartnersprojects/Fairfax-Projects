@@ -16,8 +16,8 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-xl text-primary-200 max-w-2xl">
-            Get in touch with our team. We&apos;d love to hear about your
-            business challenges and discuss how we can help.
+            Ready to build your IR infrastructure? Get in touch and we&apos;ll
+            get you started with Core IR — complimentary.
           </p>
         </div>
       </section>
@@ -28,26 +28,60 @@ export default function ContactPage() {
             {/* Contact Info */}
             <div className="space-y-8">
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Office</h3>
-                <p className="text-gray-600">
-                  123 Business Ave, Suite 500
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  Headquarters
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Suite #1504, 1221 Bidwell Street
                   <br />
-                  Fairfax, VA 22030
+                  Vancouver, BC V6G 0B1, Canada
                 </p>
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
-                <p className="text-gray-600">contact@fairfaxpartners.com</p>
+                <p className="text-gray-600 text-sm">
+                  connect@fairfax.partners
+                </p>
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
-                <p className="text-gray-600">(703) 555-0100</p>
+                <p className="text-gray-600 text-sm">+1 604 366 6277</p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Hours</h3>
-                <p className="text-gray-600">
-                  Monday - Friday: 9:00 AM - 6:00 PM EST
-                </p>
+                <h3 className="font-semibold text-gray-900 mb-3">
+                  Global Offices
+                </h3>
+                <div className="space-y-2">
+                  {[
+                    "Vancouver, Canada (HQ)",
+                    "Toronto, Canada",
+                    "Lisbon, Portugal",
+                    "Manchester, UK",
+                  ].map((office) => (
+                    <div
+                      key={office}
+                      className="flex items-center gap-2 text-sm text-gray-600"
+                    >
+                      <div className="w-1.5 h-1.5 bg-primary-500 rounded-full" />
+                      {office}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-2">Exchanges</h3>
+                <div className="flex flex-wrap gap-2">
+                  {["TSX", "CSE", "NASDAQ", "OTC", "Euronext", "LSE"].map(
+                    (ex) => (
+                      <span
+                        key={ex}
+                        className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded font-medium"
+                      >
+                        {ex}
+                      </span>
+                    )
+                  )}
+                </div>
               </div>
             </div>
 
@@ -74,7 +108,7 @@ export default function ContactPage() {
                     Message Sent!
                   </h3>
                   <p className="text-gray-600">
-                    We&apos;ll get back to you within 24 hours.
+                    Our team will be in touch within 24 hours.
                   </p>
                 </div>
               ) : (
@@ -120,15 +154,33 @@ export default function ContactPage() {
                       placeholder="john@company.com"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Company
-                    </label>
-                    <input
-                      type="text"
-                      className="input-field"
-                      placeholder="Company Name"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Company
+                      </label>
+                      <input
+                        type="text"
+                        className="input-field"
+                        placeholder="Company Name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Exchange / Listing
+                      </label>
+                      <select className="input-field">
+                        <option value="">Select exchange</option>
+                        <option>TSX</option>
+                        <option>CSE</option>
+                        <option>NASDAQ</option>
+                        <option>OTC</option>
+                        <option>Euronext</option>
+                        <option>LSE</option>
+                        <option>Pre-IPO / Private</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -136,13 +188,12 @@ export default function ContactPage() {
                     </label>
                     <select className="input-field">
                       <option value="">Select a service</option>
-                      <option>Strategy Consulting</option>
-                      <option>Digital Transformation</option>
-                      <option>Financial Advisory</option>
-                      <option>Operations Excellence</option>
-                      <option>Talent & Organization</option>
-                      <option>Risk & Compliance</option>
-                      <option>Other</option>
+                      <option>Core IR (Infrastructure Build)</option>
+                      <option>MyIR (IR Management via FAIR)</option>
+                      <option>Essential IR (Active IR Management)</option>
+                      <option>Momentum IR (Digital Marketing)</option>
+                      <option>Full Suite</option>
+                      <option>Not Sure — Need Guidance</option>
                     </select>
                   </div>
                   <div>
@@ -153,10 +204,13 @@ export default function ContactPage() {
                       rows={5}
                       required
                       className="input-field"
-                      placeholder="Tell us about your project or challenge..."
+                      placeholder="Tell us about your company and what you're looking for..."
                     />
                   </div>
-                  <button type="submit" className="btn-primary w-full sm:w-auto">
+                  <button
+                    type="submit"
+                    className="btn-primary w-full sm:w-auto"
+                  >
                     Send Message
                   </button>
                 </form>

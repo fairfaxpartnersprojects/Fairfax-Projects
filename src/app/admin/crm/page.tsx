@@ -2,41 +2,44 @@
 
 import { useState } from "react";
 
-type Tab = "contacts" | "leads" | "deals";
+type Tab = "issuers" | "contacts" | "pipeline";
+
+const issuers = [
+  { id: 1, name: "Noveris Health Sciences", ticker: "NRVS", exchange: "CSE", services: ["Core IR", "MyIR", "Essential IR"], status: "Active", onboarded: "Mar 15, 2026" },
+  { id: 2, name: "Atlas Mining Corp", ticker: "ATMC", exchange: "TSX", services: ["Core IR", "MyIR", "Essential IR", "Momentum IR"], status: "Active", onboarded: "Feb 20, 2026" },
+  { id: 3, name: "Vertex Biotech Inc.", ticker: "VRTX", exchange: "NASDAQ", services: ["Core IR", "MyIR", "Momentum IR"], status: "Active", onboarded: "Jan 10, 2026" },
+  { id: 4, name: "BlueSky Minerals", ticker: "BSKY", exchange: "CSE", services: ["Core IR", "MyIR"], status: "Onboarding", onboarded: "Mar 28, 2026" },
+  { id: 5, name: "NexGen Energy Ltd.", ticker: "NXE", exchange: "TSX", services: ["Core IR", "MyIR", "Essential IR"], status: "Active", onboarded: "Nov 5, 2025" },
+  { id: 6, name: "Summit Fintech Group", ticker: "SFG", exchange: "OTC", services: ["Core IR", "MyIR", "Essential IR"], status: "Active", onboarded: "Dec 12, 2025" },
+  { id: 7, name: "Meridian CleanTech", ticker: "MCT", exchange: "Euronext", services: ["Core IR", "MyIR"], status: "Active", onboarded: "Jan 28, 2026" },
+  { id: 8, name: "Pinnacle Gold Corp", ticker: "PGC", exchange: "LSE", services: ["Core IR", "MyIR", "Momentum IR"], status: "Active", onboarded: "Feb 8, 2026" },
+];
 
 const contacts = [
-  { id: 1, name: "John Smith", email: "john@acmecorp.com", company: "Acme Corp", phone: "(555) 123-4567", status: "Active" },
-  { id: 2, name: "Sarah Johnson", email: "sarah@techstart.io", company: "TechStart Inc.", phone: "(555) 234-5678", status: "Active" },
-  { id: 3, name: "Michael Chen", email: "mchen@globallog.com", company: "Global Logistics", phone: "(555) 345-6789", status: "Inactive" },
-  { id: 4, name: "Emily Davis", email: "emily@meridian.health", company: "Meridian Health", phone: "(555) 456-7890", status: "Active" },
-  { id: 5, name: "Robert Wilson", email: "rwilson@pinnacle.co", company: "Pinnacle Solutions", phone: "(555) 567-8901", status: "Lead" },
-  { id: 6, name: "Lisa Martinez", email: "lisa@innovate.ai", company: "InnovateAI", phone: "(555) 678-9012", status: "Active" },
+  { id: 1, name: "James Whitmore", email: "jwhitmore@noveris.com", company: "Noveris Health Sciences", role: "CEO", type: "Issuer" },
+  { id: 2, name: "Sarah Chen", email: "schen@atlasmining.com", company: "Atlas Mining Corp", role: "CFO", type: "Issuer" },
+  { id: 3, name: "David Park", email: "dpark@vertexbio.com", company: "Vertex Biotech Inc.", role: "IR Contact", type: "Issuer" },
+  { id: 4, name: "Robert Klein", email: "rklein@hedgefund.com", company: "Klein Capital", role: "Portfolio Manager", type: "Investor" },
+  { id: 5, name: "Amanda Foster", email: "afoster@pension.ca", company: "National Pension Fund", role: "Analyst", type: "Investor" },
+  { id: 6, name: "Michael Torres", email: "mtorres@family.office", company: "Torres Family Office", role: "Principal", type: "Investor" },
 ];
 
-const leads = [
-  { id: 1, name: "David Park", company: "NextGen Tech", source: "Website", score: 92, stage: "Qualified", value: "$85K" },
-  { id: 2, name: "Amanda Foster", company: "Blue Sky Media", source: "Referral", score: 87, stage: "Meeting", value: "$120K" },
-  { id: 3, name: "Kevin Brown", company: "Atlas Industries", source: "LinkedIn", score: 74, stage: "Proposal", value: "$200K" },
-  { id: 4, name: "Rachel Kim", company: "Vertex Solutions", source: "Event", score: 68, stage: "Qualified", value: "$65K" },
-  { id: 5, name: "Chris Taylor", company: "Summit Group", source: "Cold Call", score: 55, stage: "New", value: "$150K" },
-];
-
-const deals = [
-  { id: 1, name: "Enterprise Platform Upgrade", company: "Acme Corp", value: "$250K", stage: "Negotiation", probability: 85, close: "Apr 15" },
-  { id: 2, name: "Digital Strategy Engagement", company: "TechStart Inc.", value: "$125K", stage: "Closed Won", probability: 100, close: "Mar 28" },
-  { id: 3, name: "Supply Chain Optimization", company: "Global Logistics", value: "$340K", stage: "Proposal", probability: 60, close: "May 10" },
-  { id: 4, name: "Healthcare Analytics Platform", company: "Meridian Health", value: "$180K", stage: "Discovery", probability: 30, close: "Jun 1" },
-  { id: 5, name: "Compliance Automation Suite", company: "Pinnacle Solutions", value: "$95K", stage: "Negotiation", probability: 75, close: "Apr 22" },
+const pipeline = [
+  { id: 1, company: "GreenLeaf Cannabis Corp", exchange: "CSE", stage: "Proposal Sent", services: "Core IR + Essential IR", value: "$5,194/mo", probability: 75 },
+  { id: 2, company: "Nordic Mining AS", exchange: "Euronext", stage: "Discovery Call", services: "Core IR + MyIR", value: "$1,195/mo", probability: 40 },
+  { id: 3, company: "Quantum AI Technologies", exchange: "NASDAQ", stage: "Negotiation", services: "Full Suite", value: "$49,194/mo", probability: 85 },
+  { id: 4, company: "Pacific Lithium Inc.", exchange: "TSX", stage: "Proposal Sent", services: "Core IR + Momentum IR", value: "$44,000/mo", probability: 60 },
+  { id: 5, company: "BioVenture Therapeutics", exchange: "OTC", stage: "Discovery Call", services: "Core IR + Essential IR", value: "$5,194/mo", probability: 30 },
 ];
 
 export default function CRMPage() {
-  const [activeTab, setActiveTab] = useState<Tab>("contacts");
+  const [activeTab, setActiveTab] = useState<Tab>("issuers");
   const [search, setSearch] = useState("");
 
   const tabs: { key: Tab; label: string; count: number }[] = [
+    { key: "issuers", label: "Issuers", count: issuers.length },
     { key: "contacts", label: "Contacts", count: contacts.length },
-    { key: "leads", label: "Leads", count: leads.length },
-    { key: "deals", label: "Deals", count: deals.length },
+    { key: "pipeline", label: "Pipeline", count: pipeline.length },
   ];
 
   return (
@@ -45,14 +48,14 @@ export default function CRMPage() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">CRM</h1>
           <p className="text-gray-500 mt-1">
-            Manage contacts, leads, and deals
+            Manage issuers, contacts, and the sales pipeline
           </p>
         </div>
         <button className="btn-primary text-sm flex items-center gap-2">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
-          Add New
+          Onboard Issuer
         </button>
       </div>
 
@@ -85,6 +88,81 @@ export default function CRMPage() {
         />
       </div>
 
+      {/* Issuers Table */}
+      {activeTab === "issuers" && (
+        <div className="admin-card overflow-hidden p-0">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="table-header">Issuer</th>
+                  <th className="table-header">Ticker</th>
+                  <th className="table-header">Exchange</th>
+                  <th className="table-header">Services</th>
+                  <th className="table-header">Status</th>
+                  <th className="table-header">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {issuers
+                  .filter(
+                    (i) =>
+                      i.name.toLowerCase().includes(search.toLowerCase()) ||
+                      i.ticker.toLowerCase().includes(search.toLowerCase())
+                  )
+                  .map((issuer) => (
+                    <tr key={issuer.id} className="hover:bg-gray-50">
+                      <td className="table-cell font-medium">{issuer.name}</td>
+                      <td className="table-cell font-mono text-sm text-primary-600">
+                        {issuer.ticker}
+                      </td>
+                      <td className="table-cell">
+                        <span className="badge-gray">{issuer.exchange}</span>
+                      </td>
+                      <td className="table-cell">
+                        <div className="flex flex-wrap gap-1">
+                          {issuer.services.map((s) => (
+                            <span
+                              key={s}
+                              className={`text-xs px-2 py-0.5 rounded-full ${
+                                s === "Core IR"
+                                  ? "bg-blue-50 text-blue-700"
+                                  : s === "MyIR"
+                                  ? "bg-primary-50 text-primary-700"
+                                  : s === "Essential IR"
+                                  ? "bg-purple-50 text-purple-700"
+                                  : "bg-orange-50 text-orange-700"
+                              }`}
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+                      </td>
+                      <td className="table-cell">
+                        <span
+                          className={
+                            issuer.status === "Active"
+                              ? "badge-green"
+                              : "badge-yellow"
+                          }
+                        >
+                          {issuer.status}
+                        </span>
+                      </td>
+                      <td className="table-cell">
+                        <button className="text-primary-600 hover:text-primary-800 text-sm font-medium">
+                          View
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
       {/* Contacts Table */}
       {activeTab === "contacts" && (
         <div className="admin-card overflow-hidden p-0">
@@ -94,8 +172,8 @@ export default function CRMPage() {
                 <th className="table-header">Name</th>
                 <th className="table-header">Email</th>
                 <th className="table-header">Company</th>
-                <th className="table-header">Phone</th>
-                <th className="table-header">Status</th>
+                <th className="table-header">Role</th>
+                <th className="table-header">Type</th>
                 <th className="table-header">Actions</th>
               </tr>
             </thead>
@@ -109,20 +187,22 @@ export default function CRMPage() {
                 .map((contact) => (
                   <tr key={contact.id} className="hover:bg-gray-50">
                     <td className="table-cell font-medium">{contact.name}</td>
-                    <td className="table-cell text-gray-500">{contact.email}</td>
+                    <td className="table-cell text-gray-500">
+                      {contact.email}
+                    </td>
                     <td className="table-cell">{contact.company}</td>
-                    <td className="table-cell text-gray-500">{contact.phone}</td>
+                    <td className="table-cell text-gray-500">
+                      {contact.role}
+                    </td>
                     <td className="table-cell">
                       <span
                         className={
-                          contact.status === "Active"
-                            ? "badge-green"
-                            : contact.status === "Lead"
+                          contact.type === "Issuer"
                             ? "badge-blue"
-                            : "badge-gray"
+                            : "badge-green"
                         }
                       >
-                        {contact.status}
+                        {contact.type}
                       </span>
                     </td>
                     <td className="table-cell">
@@ -137,146 +217,79 @@ export default function CRMPage() {
         </div>
       )}
 
-      {/* Leads Table */}
-      {activeTab === "leads" && (
-        <div className="admin-card overflow-hidden p-0">
-          <table className="w-full">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="table-header">Name</th>
-                <th className="table-header">Company</th>
-                <th className="table-header">Source</th>
-                <th className="table-header">Score</th>
-                <th className="table-header">Stage</th>
-                <th className="table-header">Est. Value</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {leads
-                .filter(
-                  (l) =>
-                    l.name.toLowerCase().includes(search.toLowerCase()) ||
-                    l.company.toLowerCase().includes(search.toLowerCase())
-                )
-                .map((lead) => (
-                  <tr key={lead.id} className="hover:bg-gray-50">
-                    <td className="table-cell font-medium">{lead.name}</td>
-                    <td className="table-cell">{lead.company}</td>
-                    <td className="table-cell text-gray-500">{lead.source}</td>
-                    <td className="table-cell">
-                      <div className="flex items-center gap-2">
-                        <div className="w-16 bg-gray-200 rounded-full h-2">
-                          <div
-                            className={`h-2 rounded-full ${
-                              lead.score >= 80
-                                ? "bg-green-500"
-                                : lead.score >= 60
-                                ? "bg-yellow-500"
-                                : "bg-red-500"
-                            }`}
-                            style={{ width: `${lead.score}%` }}
-                          />
-                        </div>
-                        <span className="text-xs text-gray-500">
-                          {lead.score}
+      {/* Pipeline Table */}
+      {activeTab === "pipeline" && (
+        <>
+          <div className="admin-card overflow-hidden p-0">
+            <table className="w-full">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="table-header">Company</th>
+                  <th className="table-header">Exchange</th>
+                  <th className="table-header">Stage</th>
+                  <th className="table-header">Services</th>
+                  <th className="table-header">MRR</th>
+                  <th className="table-header">Probability</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {pipeline
+                  .filter((p) =>
+                    p.company.toLowerCase().includes(search.toLowerCase())
+                  )
+                  .map((deal) => (
+                    <tr key={deal.id} className="hover:bg-gray-50">
+                      <td className="table-cell font-medium">
+                        {deal.company}
+                      </td>
+                      <td className="table-cell">
+                        <span className="badge-gray">{deal.exchange}</span>
+                      </td>
+                      <td className="table-cell">
+                        <span
+                          className={
+                            deal.stage === "Negotiation"
+                              ? "badge-yellow"
+                              : deal.stage === "Proposal Sent"
+                              ? "badge-blue"
+                              : "badge-gray"
+                          }
+                        >
+                          {deal.stage}
                         </span>
-                      </div>
-                    </td>
-                    <td className="table-cell">
-                      <span
-                        className={
-                          lead.stage === "Proposal"
-                            ? "badge-blue"
-                            : lead.stage === "Meeting"
-                            ? "badge-yellow"
-                            : lead.stage === "Qualified"
-                            ? "badge-green"
-                            : "badge-gray"
-                        }
-                      >
-                        {lead.stage}
-                      </span>
-                    </td>
-                    <td className="table-cell font-medium">{lead.value}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+                      </td>
+                      <td className="table-cell text-sm text-gray-600">
+                        {deal.services}
+                      </td>
+                      <td className="table-cell font-semibold text-green-700">
+                        {deal.value}
+                      </td>
+                      <td className="table-cell">{deal.probability}%</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
 
-      {/* Deals Table */}
-      {activeTab === "deals" && (
-        <div className="admin-card overflow-hidden p-0">
-          <table className="w-full">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="table-header">Deal Name</th>
-                <th className="table-header">Company</th>
-                <th className="table-header">Value</th>
-                <th className="table-header">Stage</th>
-                <th className="table-header">Probability</th>
-                <th className="table-header">Close Date</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {deals
-                .filter(
-                  (d) =>
-                    d.name.toLowerCase().includes(search.toLowerCase()) ||
-                    d.company.toLowerCase().includes(search.toLowerCase())
-                )
-                .map((deal) => (
-                  <tr key={deal.id} className="hover:bg-gray-50">
-                    <td className="table-cell font-medium">{deal.name}</td>
-                    <td className="table-cell">{deal.company}</td>
-                    <td className="table-cell font-semibold text-green-700">
-                      {deal.value}
-                    </td>
-                    <td className="table-cell">
-                      <span
-                        className={
-                          deal.stage === "Closed Won"
-                            ? "badge-green"
-                            : deal.stage === "Negotiation"
-                            ? "badge-yellow"
-                            : deal.stage === "Proposal"
-                            ? "badge-blue"
-                            : "badge-gray"
-                        }
-                      >
-                        {deal.stage}
-                      </span>
-                    </td>
-                    <td className="table-cell">{deal.probability}%</td>
-                    <td className="table-cell text-gray-500">{deal.close}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {/* Pipeline Summary for Deals */}
-      {activeTab === "deals" && (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
-          {[
-            { stage: "Discovery", count: 1, value: "$180K", color: "border-gray-400" },
-            { stage: "Proposal", count: 1, value: "$340K", color: "border-blue-400" },
-            { stage: "Negotiation", count: 2, value: "$345K", color: "border-yellow-400" },
-            { stage: "Closed Won", count: 1, value: "$125K", color: "border-green-400" },
-          ].map((p) => (
-            <div key={p.stage} className={`stat-card border-l-4 ${p.color}`}>
-              <span className="text-sm text-gray-500">{p.stage}</span>
-              <span className="text-xl font-bold text-gray-900 mt-1">
-                {p.value}
-              </span>
-              <span className="text-xs text-gray-400">
-                {p.count} deal{p.count !== 1 ? "s" : ""}
-              </span>
-            </div>
-          ))}
-        </div>
+          {/* Pipeline Summary */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            {[
+              { stage: "Discovery", count: 2, mrr: "$6,389" },
+              { stage: "Proposal Sent", count: 2, mrr: "$49,194" },
+              { stage: "Negotiation", count: 1, mrr: "$49,194" },
+            ].map((p) => (
+              <div key={p.stage} className="stat-card">
+                <span className="text-sm text-gray-500">{p.stage}</span>
+                <span className="text-xl font-bold text-gray-900 mt-1">
+                  {p.mrr}
+                </span>
+                <span className="text-xs text-gray-400">
+                  {p.count} prospective issuer{p.count !== 1 ? "s" : ""}
+                </span>
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

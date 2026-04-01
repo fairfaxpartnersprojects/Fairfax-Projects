@@ -44,8 +44,8 @@ export default function AdminLoginPage() {
                 type="email"
                 required
                 className="input-field"
-                placeholder="admin@fairfax.com"
-                defaultValue="admin@fairfax.com"
+                placeholder="admin@fairfax.partners"
+                defaultValue="admin@fairfax.partners"
               />
             </div>
             <div>

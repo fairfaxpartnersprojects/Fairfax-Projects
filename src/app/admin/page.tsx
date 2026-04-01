@@ -3,36 +3,42 @@
 import Link from "next/link";
 
 const stats = [
-  { label: "Total Contacts", value: "2,847", change: "+12.5%", up: true },
-  { label: "Active Deals", value: "124", change: "+8.2%", up: true },
-  { label: "Revenue (MTD)", value: "$482K", change: "+23.1%", up: true },
-  { label: "Website Visitors", value: "18.2K", change: "-3.1%", up: false },
+  { label: "Active Issuers", value: "47", change: "+6", up: true },
+  { label: "MyIR Subscriptions", value: "38", change: "+4", up: true },
+  { label: "Essential IR Clients", value: "22", change: "+2", up: true },
+  { label: "Momentum Campaigns", value: "12", change: "+3", up: true },
 ];
 
 const recentActivity = [
-  { action: "New lead added", detail: "John Smith from Acme Corp", time: "5 min ago", type: "crm" },
-  { action: "Post published", detail: "Q1 Market Insights on LinkedIn", time: "1 hour ago", type: "social" },
-  { action: "Deal closed", detail: "$125K - TechStart Inc.", time: "2 hours ago", type: "deal" },
-  { action: "New contact form", detail: "Emily Davis - Strategy inquiry", time: "3 hours ago", type: "crm" },
-  { action: "Campaign launched", detail: "Spring Newsletter sent to 2.4K", time: "5 hours ago", type: "social" },
-  { action: "Analytics alert", detail: "Traffic spike: +45% from organic", time: "6 hours ago", type: "analytics" },
+  { action: "New issuer onboarded", detail: "Noveris Health Sciences — Core IR + MyIR Pro", time: "25 min ago", type: "core" },
+  { action: "Press release drafted", detail: "Atlas Mining Corp — Q1 Operational Update", time: "1 hour ago", type: "essential" },
+  { action: "Momentum campaign live", detail: "Vertex Biotech — LinkedIn + Google Ads", time: "2 hours ago", type: "momentum" },
+  { action: "FAIR agent alert", detail: "Inbound call spike for NexGen Energy — 14 calls today", time: "3 hours ago", type: "myir" },
+  { action: "Investor website deployed", detail: "BlueSky Minerals — Core IR infrastructure complete", time: "5 hours ago", type: "core" },
+  { action: "Disclosure review", detail: "Summit Fintech — Material change report approved", time: "6 hours ago", type: "essential" },
 ];
 
 const quickActions = [
-  { label: "Add Contact", href: "/admin/crm", color: "bg-blue-500" },
-  { label: "New Post", href: "/admin/social", color: "bg-purple-500" },
-  { label: "View Reports", href: "/admin/analytics", color: "bg-green-500" },
-  { label: "Edit Content", href: "/admin/content", color: "bg-orange-500" },
+  { label: "Onboard Issuer", href: "/admin/crm", color: "bg-blue-500" },
+  { label: "Draft Release", href: "/admin/content", color: "bg-purple-500" },
+  { label: "Campaign Report", href: "/admin/analytics", color: "bg-green-500" },
+  { label: "Social Post", href: "/admin/social", color: "bg-orange-500" },
+];
+
+const pipelineByService = [
+  { service: "Core IR", active: 47, pending: 8, color: "bg-blue-500" },
+  { service: "MyIR", active: 38, pending: 5, color: "bg-primary-500" },
+  { service: "Essential IR", active: 22, pending: 4, color: "bg-purple-500" },
+  { service: "Momentum IR", active: 12, pending: 6, color: "bg-orange-500" },
 ];
 
 export default function AdminDashboard() {
   return (
     <div>
-      {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
         <p className="text-gray-500 mt-1">
-          Welcome back. Here&apos;s what&apos;s happening today.
+          Overview of issuers, services, and IR operations.
         </p>
       </div>
 
@@ -103,13 +109,13 @@ export default function AdminDashboard() {
               >
                 <div
                   className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
-                    item.type === "crm"
+                    item.type === "core"
                       ? "bg-blue-500"
-                      : item.type === "social"
+                      : item.type === "essential"
                       ? "bg-purple-500"
-                      : item.type === "deal"
-                      ? "bg-green-500"
-                      : "bg-orange-500"
+                      : item.type === "momentum"
+                      ? "bg-orange-500"
+                      : "bg-primary-500"
                   }`}
                 />
                 <div className="flex-1 min-w-0">
@@ -128,36 +134,42 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Revenue Chart Placeholder */}
+        {/* Service Pipeline */}
         <div className="admin-card">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            Revenue Overview
+            Service Pipeline
           </h2>
-          <div className="space-y-4">
-            {[
-              { month: "Jan", value: 65, amount: "$320K" },
-              { month: "Feb", value: 72, amount: "$355K" },
-              { month: "Mar", value: 80, amount: "$395K" },
-              { month: "Apr", value: 95, amount: "$482K" },
-            ].map((bar) => (
-              <div key={bar.month} className="flex items-center gap-4">
-                <span className="text-sm text-gray-500 w-8">{bar.month}</span>
-                <div className="flex-1 bg-gray-100 rounded-full h-6 overflow-hidden">
+          <div className="space-y-6">
+            {pipelineByService.map((p) => (
+              <div key={p.service}>
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm font-medium text-gray-900">
+                    {p.service}
+                  </span>
+                  <div className="flex gap-3 text-xs">
+                    <span className="text-gray-500">
+                      {p.active} active
+                    </span>
+                    <span className="text-yellow-600">
+                      {p.pending} pending
+                    </span>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
                   <div
-                    className="bg-primary-500 h-full rounded-full transition-all duration-500"
-                    style={{ width: `${bar.value}%` }}
+                    className={`${p.color} h-full rounded-full`}
+                    style={{
+                      width: `${(p.active / 50) * 100}%`,
+                    }}
                   />
                 </div>
-                <span className="text-sm font-medium text-gray-900 w-16 text-right">
-                  {bar.amount}
-                </span>
               </div>
             ))}
           </div>
           <div className="mt-6 pt-4 border-t border-gray-100">
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-500">Total YTD</span>
-              <span className="text-lg font-bold text-gray-900">$1.55M</span>
+              <span className="text-sm text-gray-500">Total Active Issuers</span>
+              <span className="text-lg font-bold text-gray-900">47</span>
             </div>
           </div>
         </div>

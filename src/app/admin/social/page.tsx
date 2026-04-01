@@ -13,50 +13,60 @@ const scheduledPosts = [
   {
     id: 1,
     platform: "LinkedIn",
-    content: "Excited to announce our Q1 results! Revenue up 23% YoY with strong client retention...",
+    issuer: "Atlas Mining Corp",
+    content: "Q1 Operational Update: Atlas Mining Corp reports strong production numbers with 15% increase in output...",
     date: "Apr 2, 2026",
     time: "9:00 AM",
     status: "Scheduled",
+    type: "Issuer Post",
   },
   {
     id: 2,
     platform: "Twitter / X",
-    content: "Join us at the Business Innovation Summit next week. Our CEO will be presenting on...",
+    issuer: "Fairfax Partners",
+    content: "Join us at the PDAC 2026 conference next week. Our team will be presenting on IR best practices for...",
     date: "Apr 3, 2026",
     time: "12:00 PM",
     status: "Scheduled",
+    type: "Company Post",
   },
   {
     id: 3,
-    platform: "Instagram",
-    content: "Behind the scenes at our annual strategy retreat. Building the future together...",
+    platform: "LinkedIn",
+    issuer: "Vertex Biotech",
+    content: "Vertex Biotech announces Phase 2 clinical trial results. Full report available on the investor site...",
     date: "Apr 4, 2026",
-    time: "3:00 PM",
+    time: "10:00 AM",
     status: "Draft",
+    type: "Issuer Post",
   },
   {
     id: 4,
     platform: "LinkedIn",
-    content: "5 key trends shaping the future of strategic consulting in 2026. Thread below...",
+    issuer: "Fairfax Partners",
+    content: "How the FAIR agent is changing investor relations for small-cap issuers. A deep dive into agentic IR...",
     date: "Apr 5, 2026",
-    time: "10:00 AM",
+    time: "9:00 AM",
     status: "Scheduled",
+    type: "Company Post",
   },
   {
     id: 5,
     platform: "Facebook",
-    content: "We're hiring! Looking for talented consultants to join our growing team...",
+    issuer: "Noveris Health Sciences",
+    content: "Noveris Health Sciences launches redesigned investor website powered by Fairfax Partners Core IR...",
     date: "Apr 6, 2026",
     time: "11:00 AM",
     status: "Draft",
+    type: "Issuer Post",
   },
 ];
 
 const recentPerformance = [
-  { title: "Q1 Market Insights Report", platform: "LinkedIn", likes: 342, comments: 48, shares: 87, reach: "15.2K" },
-  { title: "Client Success: TechStart", platform: "LinkedIn", likes: 256, comments: 31, shares: 62, reach: "11.8K" },
-  { title: "Innovation Summit Recap", platform: "Twitter / X", likes: 189, comments: 23, shares: 45, reach: "8.4K" },
-  { title: "Team Culture Spotlight", platform: "Instagram", likes: 412, comments: 67, shares: 34, reach: "6.2K" },
+  { title: "Atlas Mining Q1 Update", platform: "LinkedIn", likes: 342, comments: 48, shares: 87, reach: "15.2K" },
+  { title: "FAIR Agent Launch Announcement", platform: "LinkedIn", likes: 521, comments: 67, shares: 134, reach: "22.4K" },
+  { title: "PDAC Conference Coverage", platform: "Twitter / X", likes: 189, comments: 23, shares: 45, reach: "8.4K" },
+  { title: "Vertex Phase 2 Results", platform: "LinkedIn", likes: 278, comments: 41, shares: 93, reach: "12.8K" },
 ];
 
 export default function SocialMediaPage() {
@@ -66,9 +76,11 @@ export default function SocialMediaPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Social Media Manager</h1>
+          <h1 className="text-2xl font-bold text-gray-900">
+            Social Media Manager
+          </h1>
           <p className="text-gray-500 mt-1">
-            Schedule posts, track engagement, and grow your audience
+            Manage posts for Fairfax Partners and issuer clients
           </p>
         </div>
         <button
@@ -82,28 +94,47 @@ export default function SocialMediaPage() {
         </button>
       </div>
 
-      {/* Post Composer */}
+      {/* Composer */}
       {showComposer && (
         <div className="admin-card mb-8">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">
             Compose Post
           </h2>
           <div className="space-y-4">
-            <div className="flex gap-2">
-              {["LinkedIn", "Twitter / X", "Facebook", "Instagram"].map(
-                (p) => (
-                  <button
-                    key={p}
-                    className="px-3 py-1.5 text-sm rounded-full border border-gray-300 hover:border-primary-500 hover:text-primary-600 transition-colors"
-                  >
-                    {p}
-                  </button>
-                )
-              )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Post For
+                </label>
+                <select className="input-field">
+                  <option>Fairfax Partners (Company)</option>
+                  <option>Atlas Mining Corp (ATMC)</option>
+                  <option>Vertex Biotech Inc. (VRTX)</option>
+                  <option>Noveris Health Sciences (NRVS)</option>
+                  <option>NexGen Energy Ltd. (NXE)</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Platform
+                </label>
+                <div className="flex gap-2 mt-1">
+                  {["LinkedIn", "Twitter / X", "Facebook", "Instagram"].map(
+                    (p) => (
+                      <button
+                        key={p}
+                        className="px-3 py-1.5 text-sm rounded-full border border-gray-300 hover:border-primary-500 hover:text-primary-600 transition-colors"
+                      >
+                        {p}
+                      </button>
+                    )
+                  )}
+                </div>
+              </div>
             </div>
             <textarea
               rows={4}
-              placeholder="What would you like to share?"
+              placeholder="Compose your post..."
               className="input-field"
             />
             <div className="flex items-center justify-between">
@@ -190,6 +221,15 @@ export default function SocialMediaPage() {
                     </span>
                     <span
                       className={
+                        post.type === "Issuer Post"
+                          ? "badge-blue"
+                          : "badge-gray"
+                      }
+                    >
+                      {post.issuer}
+                    </span>
+                    <span
+                      className={
                         post.status === "Scheduled"
                           ? "badge-green"
                           : "badge-yellow"
@@ -215,7 +255,7 @@ export default function SocialMediaPage() {
           </div>
         </div>
 
-        {/* Recent Performance */}
+        {/* Top Performing */}
         <div className="admin-card">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">
             Top Performing Posts

@@ -16,20 +16,35 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-gray-400 max-w-md leading-relaxed">
-              Delivering innovative strategic business solutions to help
-              companies grow, transform, and succeed in today&apos;s competitive
-              landscape.
+              Connecting capital &amp; ideas. Integrated investor relations,
+              venture capital, and corporate finance for public and pre-public
+              companies worldwide.
             </p>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {["TSX", "CSE", "NASDAQ", "OTC", "Euronext", "LSE"].map((ex) => (
+                <span
+                  key={ex}
+                  className="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded"
+                >
+                  {ex}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Services */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-white font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
-              {["Home", "About", "Services", "Contact"].map((item) => (
+              {[
+                "Core IR",
+                "Essential IR",
+                "Momentum IR",
+                "MyIR",
+              ].map((item) => (
                 <li key={item}>
                   <Link
-                    href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                    href="/services"
                     className="text-gray-400 hover:text-white transition-colors"
                   >
                     {item}
@@ -42,31 +57,46 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h3 className="text-white font-semibold mb-4">Contact</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>123 Business Ave, Suite 500</li>
-              <li>Fairfax, VA 22030</li>
-              <li>contact@fairfaxpartners.com</li>
-              <li>(703) 555-0100</li>
+            <ul className="space-y-2 text-gray-400 text-sm">
+              <li>Suite #1504, 1221 Bidwell Street</li>
+              <li>Vancouver, BC V6G 0B1, Canada</li>
+              <li className="pt-2">connect@fairfax.partners</li>
+              <li>+1 604 366 6277</li>
+              <li className="pt-2 text-xs text-gray-500">
+                Lisbon &middot; Manchester &middot; Toronto &middot; Vancouver
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} Fairfax Partners. All rights
+            &copy; {new Date().getFullYear()} Fairfax Partners Inc. All rights
             reserved.
           </p>
           <div className="flex gap-6">
-            {["Privacy Policy", "Terms of Service"].map((item) => (
-              <Link
-                key={item}
-                href="#"
-                className="text-gray-500 hover:text-gray-300 text-sm transition-colors"
-              >
-                {item}
-              </Link>
-            ))}
+            {["Privacy Policy", "Terms of Service", "Disclaimer"].map(
+              (item) => (
+                <Link
+                  key={item}
+                  href="#"
+                  className="text-gray-500 hover:text-gray-300 text-sm transition-colors"
+                >
+                  {item}
+                </Link>
+              )
+            )}
           </div>
+        </div>
+
+        {/* Compliance Note */}
+        <div className="mt-6 pt-6 border-t border-gray-800">
+          <p className="text-xs text-gray-600 leading-relaxed max-w-4xl">
+            All communications are reviewed for accuracy, approval, and
+            compliance with Section 52(2) Canada, Rule 10b-5 U.S., EU MAR, UK
+            DTR 2, and their global equivalents. Fairfax Partners Inc. is not
+            affiliated with Fairfax Financial Holdings Limited (TSX: FFH).
+          </p>
         </div>
       </div>
     </footer>

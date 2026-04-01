@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Fairfax Partners | Strategic Business Solutions",
+  title: "Fairfax Partners Inc. | Connecting Capital & Ideas",
   description:
-    "Fairfax Partners delivers innovative strategic business solutions, consulting, and technology services to help companies grow and succeed.",
+    "Integrated investor relations, venture capital, and corporate finance for public and pre-public companies. Core IR, MyIR, Essential IR, and Momentum IR — powered by FAIR.",
 };
 
 export default function RootLayout({

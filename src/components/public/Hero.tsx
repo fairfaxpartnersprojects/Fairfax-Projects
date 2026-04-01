@@ -18,29 +18,31 @@ export default function Hero() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
         <div className="max-w-3xl">
           <span className="inline-block bg-primary-500/20 border border-primary-400/30 text-primary-200 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-            Trusted by 500+ Companies Worldwide
+            Powered by FAIR — The World&apos;s First Agentic IR Agent
           </span>
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-            Strategic Solutions for{" "}
-            <span className="text-primary-300">Modern Business</span>
+            Investor Relations{" "}
+            <span className="text-primary-300">
+              Built, Managed & Amplified
+            </span>
           </h1>
           <p className="text-lg md:text-xl text-primary-100/80 mb-8 leading-relaxed">
-            We partner with forward-thinking organizations to drive growth,
-            streamline operations, and unlock new opportunities through
-            innovative consulting and technology services.
+            Fairfax Partners delivers integrated IR infrastructure, active
+            management, and digital marketing for public and pre-public
+            companies listed on the TSX, CSE, NASDAQ, OTC, Euronext, and LSE.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/contact"
               className="bg-white text-primary-900 px-8 py-4 rounded-lg font-semibold hover:bg-primary-50 transition-colors text-center"
             >
-              Get Started
+              Get Started with Core IR
             </Link>
             <Link
               href="/services"
               className="border-2 border-white/30 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors text-center"
             >
-              Our Services
+              View Services
             </Link>
           </div>
         </div>
@@ -48,10 +50,10 @@ export default function Hero() {
         {/* Stats bar */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-12 border-t border-white/10">
           {[
-            { value: "500+", label: "Clients Served" },
-            { value: "$2B+", label: "Revenue Generated" },
-            { value: "98%", label: "Client Retention" },
-            { value: "15+", label: "Years Experience" },
+            { value: "6", label: "Global Exchanges" },
+            { value: "4", label: "Offices Worldwide" },
+            { value: "100+", label: "Issuers Served" },
+            { value: "24/7", label: "FAIR Agent Coverage" },
           ].map((stat) => (
             <div key={stat.label}>
               <div className="text-3xl md:text-4xl font-bold text-white">
